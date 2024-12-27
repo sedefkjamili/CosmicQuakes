@@ -1,27 +1,12 @@
 import pandas as pd
 
 def load_data(file_path):
-    """
-    CSV dosyasından veri yükler.
-    :param file_path: CSV dosyasının yolu
-    :return: DataFrame
-    """
-    return pd.read_csv(file_path)
+    df = pd.read_csv(file_path)
+    df.columns = ['time_abs', 'time_rel', 'velocity']
+    return df
 
 def process_data(df):
-    """
-    Veriyi işlemeye başlar: 
-    - Zaman sütunlarını doğru formatta dönüştür
-    - Eksik verileri kontrol et
-    :param df: Yüklü veri
-    :return: İşlenmiş veri
-    """
-    # 'time_abs' sütununu datetime formatına dönüştür
-    df['time_abs'] = pd.to_datetime(df['time_abs'])
-    
-    # Eksik verileri kontrol et
+    df['time_abs'] = pd.to_datetime(df['time_abs'], format='%Y-%m-%dT%H:%M:%S.%f')
     missing_data = df.isnull().sum()
     print("Eksik Veriler:\n", missing_data)
-    
-    # Veriyi döndür
     return df
