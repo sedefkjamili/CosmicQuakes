@@ -42,4 +42,4 @@ def plot_imfs(imfs, original_signal=None):
         plt.legend()
 
     plt.tight_layout()
-    plt.show()
+    plt.show() 

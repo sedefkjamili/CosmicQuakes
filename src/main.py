@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from src.preprocessing import load_data, process_data
 from src.sta_lta import sta_lta_filter
 from src.bandpass_filtering import bandpass_filter
@@ -12,7 +13,7 @@ import pandas as pd
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Veriyi yükle ve işleme
-data = load_data('data/moon_data.csv')
+data = load_data('data/xa.s12.00.mhz.1970-01-19HR00_evid00002.csv')
 data = process_data(data)
 
 # Sinyal durumunu kontrol et
@@ -51,11 +52,14 @@ imfs = apply_emd(filtered_velocity)
 plot_imfs(imfs, original_signal=filtered_velocity)
 
 # IMF 1 için Fourier Analizi (FFT)
-fft_analysis(imfs[0], fs, title="IMF 1'in Frekans Spektrumu (FFT)")
-
-# STA/LTA hesaplama
+fft_analysis(imfs[0], fs, title="IMF 1'in Frekans Spektrumu (FFT)")    
+# STA/LTA hesaplama 
 try:
     sta_lta_ratio = sta_lta_filter(filtered_velocity, sta_len=10, lta_len=50)
+
+    if np.any(np.isnan(sta_lta_ratio)) or np.any(np.isinf(sta_lta_ratio)):
+        print("Hata: STA/LTA oranında geçersiz (NaN veya sonsuz) değerler var!")
+
     if len(sta_lta_ratio) > 0:
         time_abs_trimmed = data['time_abs'][-len(sta_lta_ratio):]
         plt.figure(figsize=(10, 6))
@@ -69,7 +73,6 @@ try:
         plt.show()
     else:
         print("STA/LTA oranı hesaplanamadı. Lütfen veri uzunluğunu ve parametreleri kontrol edin.")
+
 except ValueError as e:
     print(f"STA/LTA hesaplama hatası: {e}")
-
-
