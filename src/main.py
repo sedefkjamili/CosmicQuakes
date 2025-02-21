@@ -9,6 +9,22 @@ import sys
 import os
 import pandas as pd
 
+"""
+Final Summary: Your Code is Like a Seismic Detective 🕵️‍♂️
+Bandpass Filter: Removes noise, like noise-canceling headphones.
+EMD: Breaks signals into layers, like peeling an onion.
+FFT: Converts signals to frequency form, like a prism splitting light.
+STA/LTA: Detects sudden changes, like noticing a loud shout in a quiet place.
+Preprocessing: Cleans data, like washing vegetables before cooking.
+Main(): is Like Making a Cake 🎂
+- Get Ingredients 🛒 → Load the data.
+- Wash & Prepare 🧼 → Preprocess the data.
+- Mix Ingredients 🥣 → Apply filters.
+- Bake in the Oven 🔥 → Perform EMD and FFT analysis.
+- Decorate the Cake 🍓 → Visualize the results.
+- Serve or Store for Later 🎁 → Save the processed data.
+"""
+
 # Proje kök dizinini PYTHONPATH'e ekle
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
