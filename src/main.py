@@ -14,6 +14,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Veriyi yükle ve işleme
 data = load_data('data/xa.s12.00.mhz.1970-01-19HR00_evid00002.csv')
+#xa.s12.00.mhz.1970-01-19HR00_evid00002.csv
 data = process_data(data)
 
 # Sinyal durumunu kontrol et
@@ -28,8 +29,8 @@ fs = 1 / time_diff  # Örnekleme frekansı
 print(f"Örnekleme Frekansı (fs): {fs:.2f} Hz")
 
 # Bandpass Filtreleme için Nyquist'e uygun kesim frekansları
-lowcut = 0.1 * fs / 2  # Nyquist'in %10'u
-highcut = 0.9 * fs / 2  # Nyquist'in %90'ı
+lowcut = 0.01  
+highcut = 0.5 
 
 print(f"Lowcut: {lowcut:.2f} Hz, Highcut: {highcut:.2f} Hz")
 
