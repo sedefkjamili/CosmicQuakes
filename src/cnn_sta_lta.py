@@ -6,7 +6,7 @@ from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense
 def sta_lta_filter(signal, sta_len=10, lta_len=100):
     """
     STA/LTA oranını hesaplar.
-    
+    "  "
     :param signal: Zaman serisi verisi (1D NumPy array)
     :param sta_len: Kısa dönem penceresi uzunluğu (örneğin 10 örnek)
     :param lta_len: Uzun dönem penceresi uzunluğu (örneğin 100 örnek)
